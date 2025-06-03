@@ -3,47 +3,42 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAFIA MADDY SERVER🐧</title>    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>SERVER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --yelo-primary: #FFD700;
+            --yelo-secondary: #FFA500;
+            --yelo-dark: #1A1A1A;
+            --yelo-light: #FFF8DC;
+            --yelo-accent: #FF6347;
+        }
+        
         body {
-            transition: background-image 1s ease-in-out;
-            background: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWpycmhlbDk1eGdkdTAzNTdjMW00bXB5bjkyYjVjMHUzc210eGtjZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jzHFPlw89eTqU/giphy.gif') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--yelo-dark);
+            color: var(--yelo-light);
             min-height: 100vh;
-            font-family: 'Rajdhani', sans-serif;
             position: relative;
+            overflow-x: hidden;
         }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: -1;
-        }
-        .container {
-            max-width: 400px;
-            height: auto;
-            border-radius: 20px;
+        
+        .yelo-container {
+            max-width: 500px;
+            margin: 30px auto;
             padding: 25px;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
-            background-color: rgba(0, 0, 0, 0.85);
-            border: 2px solid #ff0000;
-            resize: none;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            background: rgba(26, 26, 26, 0.9);
+            border: 2px solid var(--yelo-primary);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
             position: relative;
             overflow: hidden;
         }
-        .container::before {
+        
+        .yelo-container::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -53,686 +48,513 @@
             background: linear-gradient(
                 to right,
                 transparent,
-                rgba(255, 0, 0, 0.1),
+                rgba(255, 215, 0, 0.1),
                 transparent
             );
             transform: rotate(45deg);
-            animation: shine 3s infinite;
+            animation: yeloShine 3s infinite;
         }
-        @keyframes shine {
+        
+        @keyframes yeloShine {
             0% { transform: translateX(-100%) rotate(45deg); }
             100% { transform: translateX(100%) rotate(45deg); }
         }
-        .form-control {
-            outline: none;
-            border: 1px solid #ff0000;
-            background: rgba(0, 0, 0, 0.7);
-            width: 100%;
-            height: 45px;
-            padding: 10px 15px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            color: white;
-            transition: all 0.3s ease;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.1em;
-            letter-spacing: 1px;
-        }
-        .form-control:focus {
-            background: rgba(255, 0, 0, 0.1);
-            color: white;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-            border: 1px solid #ff3333;
-        }
-        .header { 
-            text-align: center; 
-            padding: 20px;
-            text-shadow: 0 0 10px #ff0000;
-            position: relative;
-        }
-        .header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.8em;
-            font-weight: 800;
-            margin: 0;
-            padding: 0;
-            letter-spacing: 3px;
-            animation: textPulse 2s infinite;
-            text-transform: uppercase;
-        }
-        @keyframes textPulse {
-            0% { text-shadow: 0 0 10px #ff0000; }
-            50% { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000; }
-            100% { text-shadow: 0 0 10px #ff0000; }
-        }
-        .btn-submit { 
-            width: 100%; 
-            margin-top: 15px;
-            background: linear-gradient(45deg, #990000, #ff0000);
-            border: none;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 2px;
-            padding: 15px;
-            border-radius: 15px;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Orbitron', sans-serif;
-        }
-        .btn-submit:hover {
-            transform: scale(1.05);
-            background: linear-gradient(45deg, #ff0000, #990000);
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
-        }
-        .btn-submit::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to right,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
-            transform: rotate(45deg);
-            animation: buttonShine 2s infinite;
-        }
-        @keyframes buttonShine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-        .stats-container {
-            background: rgba(0, 0, 0, 0.85);
-            border: 1px solid #ff0000;
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 20px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-        }
-        .stats-title {
-            font-family: 'Orbitron', sans-serif;
-            color: #ff0000;
+        
+        .yelo-header {
             text-align: center;
-            margin-bottom: 10px;
-            font-size: 1.4em;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
         }
-        .stats-item {
+        
+        .yelo-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--yelo-primary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .yelo-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--yelo-accent);
+            border-radius: 3px;
+        }
+        
+        .yelo-subtitle {
+            font-size: 1rem;
+            color: var(--yelo-secondary);
+            margin-top: 15px;
+        }
+        
+        .yelo-form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--yelo-primary);
+            color: var(--yelo-light);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .yelo-form-control:focus {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-color: var(--yelo-accent);
+            box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+            color: var(--yelo-light);
+        }
+        
+        .yelo-label {
+            font-weight: 500;
+            color: var(--yelo-primary);
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .yelo-btn {
+            background: linear-gradient(135deg, var(--yelo-primary), var(--yelo-secondary));
+            color: var(--yelo-dark);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .yelo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+            color: var(--yelo-dark);
+        }
+        
+        .yelo-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: yeloBtnShine 2s infinite;
+        }
+        
+        @keyframes yeloBtnShine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        .yelo-stats {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid var(--yelo-secondary);
+        }
+        
+        .yelo-stats-title {
+            color: var(--yelo-primary);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .yelo-stat-item {
             display: flex;
             justify-content: space-between;
-            margin: 10px 0;
-            padding: 5px 10px;
-            border-bottom: 1px solid rgba(255, 0, 0, 0.2);
-        }
-        .stats-label {
-            font-family: 'Orbitron', sans-serif;
-            color: #ff6666;
-            font-size: 1.1em;
-            letter-spacing: 1px;
-        }
-        .stats-value {
-            font-family: 'Rajdhani', sans-serif;
-            color: white;
-            font-weight: 700;
-            font-size: 1.2em;
-            letter-spacing: 1px;
-        }
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 20px auto;
-            max-width: 1200px;
-            padding: 0 20px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
         }
         
-        .stat-card {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            padding: 20px;
-            color: white;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+        .yelo-stat-label {
+            color: var(--yelo-secondary);
+            font-weight: 500;
         }
         
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+        .yelo-stat-value {
+            color: var(--yelo-light);
+            font-weight: 600;
         }
         
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0;
-            color: #ff6b6b;
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            color: #aaa;
-        }
-        
-        .progress {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            margin-top: 10px;
-        }
-        
-        .progress-bar {
-            background: linear-gradient(45deg, #ff0000, #ff6b6b);
-        }
-        
-        .charts-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px auto;
-            max-width: 1200px;
-            padding: 0 20px;
-        }
-        
-        .chart-card {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .uptime-counter {
+        .yelo-footer {
             text-align: center;
-            margin: 20px 0;
-            font-size: 18px;
-            color: #ff6b6b;
+            margin-top: 30px;
+            padding: 20px 0;
+            color: var(--yelo-secondary);
         }
         
-        .current-time {
-            text-align: center;
-            font-size: 16px;
-            color: #aaa;
-            margin-bottom: 20px;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .live-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background: #ff0000;
-            border-radius: 50%;
-            margin-right: 5px;
-            animation: pulse 2s infinite;
-        }
-        .glow-text {
-            text-shadow: 0 0 10px #ff0000,
-                         0 0 20px #ff0000,
-                         0 0 30px #ff0000,
-                         0 0 40px #ff0000;
-            animation: textGlow 2s ease-in-out infinite alternate;
-        }
-        @keyframes textGlow {
-            from {
-                text-shadow: 0 0 10px #ff0000,
-                            0 0 20px #ff0000,
-                            0 0 30px #ff0000;
-            }
-            to {
-                text-shadow: 0 0 20px #ff0000,
-                            0 0 30px #ff0000,
-                            0 0 40px #ff0000,
-                            0 0 50px #ff0000,
-                            0 0 60px #ff0000;
-            }
-        }
-        .social-links {
+        .yelo-social-links {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-top: 15px;
         }
-        .social-link {
-            color: white;
-            font-size: 24px;
+        
+        .yelo-social-link {
+            color: var(--yelo-primary);
+            font-size: 1.5rem;
             transition: all 0.3s;
-            text-decoration: none;
-        }
-        .social-link:hover {
-            color: #ff0000;
-            transform: scale(1.2);
-        }
-        .footer { 
-            text-align: center; 
-            margin-top: 20px; 
-            color: #888;
-            position: relative;
-            padding: 20px;
-        }
-        .footer p {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3em;
-            letter-spacing: 2px;
-        }
-        label {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1em;
-            letter-spacing: 1px;
-            color: #ff6666;
-            margin-bottom: 5px;
-            display: block;
-        }
-        .side-panel {
-            position: fixed;
-            right: 0;
-            top: 0;
-            width: 300px;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
-            border-left: 2px solid #ff0000;
-            padding: 20px;
-            box-shadow: -5px 0 20px rgba(255, 0, 0, 0.3);
-        }
-        .side-panel-title {
-            color: #ff0000;
-            text-align: center;
-            font-size: 1.5em;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px #ff0000;
-        }
-        .info-item {
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid #ff0000;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-        }
-        .info-title {
-            color: #ff0000;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-        }
-        .side-button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, #990000, #ff0000);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            margin-top: 10px;
         }
         
-        .mobile-menu-btn {
-            display: none;
-            position: fixed;
-            right: 20px;
-            top: 20px;
-            z-index: 1001;
-            background: linear-gradient(45deg, #990000, #ff0000);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+        .yelo-social-link:hover {
+            color: var(--yelo-accent);
+            transform: scale(1.2);
+        }
+        
+        .yelo-pulse {
+            animation: yeloPulse 2s infinite;
+        }
+        
+        @keyframes yeloPulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .yelo-badge {
+            display: inline-block;
+            background: var(--yelo-accent);
             color: white;
-            font-size: 24px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        .yelo-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .yelo-tab {
+            padding: 10px 20px;
             cursor: pointer;
+            color: var(--yelo-secondary);
+            font-weight: 500;
+            position: relative;
         }
-
-        @media screen and (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            .side-panel {
-                transform: translateX(100%);
-                width: 100%;
-                max-width: 300px;
-                transition: transform 0.3s ease;
-            }
-            .side-panel.active {
-                transform: translateX(0);
-            }
-            .main-content {
-                margin-right: 0;
-            }
-            .container {
-                max-width: 95%;
-                margin: 10px auto;
-            }
-            .header h1 {
-                font-size: 2em;
-            }
+        
+        .yelo-tab.active {
+            color: var(--yelo-primary);
         }
-
-        @media screen and (max-width: 480px) {
-            .header h1 {
-                font-size: 1.5em;
+        
+        .yelo-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--yelo-accent);
+        }
+        
+        .yelo-tab-content {
+            display: none;
+        }
+        
+        .yelo-tab-content.active {
+            display: block;
+        }
+        
+        .yelo-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .yelo-dot {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            animation: yeloFloat linear infinite;
+        }
+        
+        @keyframes yeloFloat {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .yelo-container {
+                margin: 20px 15px;
+                padding: 20px;
             }
-            .container {
-                padding: 15px;
-            }
-            .form-control {
-                font-size: 0.9em;
-            }
-            .btn-submit {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-            .info-item {
-                padding: 10px;
-            }
-            .side-panel {
-                padding: 15px;
+            
+            .yelo-title {
+                font-size: 2rem;
             }
         }
     </style>
-    <script>
-        function toggleSidePanel() {
-            document.querySelector('.side-panel').classList.toggle('active');
-        }
-    </script>
 </head>
 <body>
-    <button class="mobile-menu-btn" onclick="toggleSidePanel()">☰</button>
+    <div class="yelo-dots" id="yeloDots"></div>
     
-    <div class="main-content">
-        <div class="header">
-            <h1 class="glow-text">🔥 𝐌𝐀𝐅𝐈𝐀 𝐌𝐀𝐃𝐃𝐘 𝐒𝐄𝐑𝐕𝐄𝐑 👑</h1>
-            <div class="stats-container">
-                <div class="stats-title">Server Statistics</div>
-                <div class="stats-item">
-                    <span class="stats-label">Uptime:</span>
-                    <span class="stats-value">{{ uptime }}</span>
-                </div>
-                <div class="stats-item">
-                    <span class="stats-label">CPU Usage:</span>
-                    <span class="stats-value">{{ stats.cpu }}%</span>
-                </div>
-                <div class="stats-item">
-                    <span class="stats-label">Memory Usage:</span>
-                    <span class="stats-value">{{ stats.memory.percent }}%</span>
-                </div>
-                <div class="stats-item">
-                    <span class="stats-label">Messages Sent:</span>
-                    <span class="stats-value">{{ stats.messages.sent }}</span>
-                </div>
-                <div class="stats-item">
-                    <span class="stats-label">Success Rate:</span>
-                    <span class="stats-value">{{ stats.messages.success_rate }}%</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="dashboard-stats">
-            <div class="stat-card">
-                <div class="stat-label">CPU Usage</div>
-                <div class="stat-value">{{ stats.cpu }}%</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{ stats.cpu }}%"></div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="yelo-header">
+            <h1 class="yelo-title">TERROR<span class="yelo-badge yelo-pulse">ONLINE</span></h1>
+            <p class="yelo-subtitle"Convo Server</p>
             
-            <div class="stat-card">
-                <div class="stat-label">Memory Usage</div>
-                <div class="stat-value">{{ stats.memory.percent }}%</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{ stats.memory.percent }}%"></div>
+            <div class="yelo-stats">
+                <h3 class="yelo-stats-title">SERVER STATS</h3>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">Uptime:</span>
+                    <span class="yelo-stat-value">{{ uptime }}</span>
                 </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-label">Disk Usage</div>
-                <div class="stat-value">{{ stats.disk.percent }}%</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{ stats.disk.percent }}%"></div>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">CPU Usage:</span>
+                    <span class="yelo-stat-value">{{ stats.cpu }}%</span>
+                </div>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">Memory:</span>
+                    <span class="yelo-stat-value">{{ stats.memory.percent }}%</span>
+                </div>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">Messages Sent:</span>
+                    <span class="yelo-stat-value">{{ stats.messages.sent }}</span>
                 </div>
             </div>
         </div>
         
-        <div class="charts-container">
-            <div class="chart-card">
-                <canvas id="cpuChart"></canvas>
-            </div>
-            <div class="chart-card">
-                <canvas id="memoryChart"></canvas>
-            </div>
+        <div class="yelo-tabs">
+            <div class="yelo-tab active" onclick="changeTab('messaging')">Messaging</div>
+            <div class="yelo-tab" onclick="changeTab('settings')">Settings</div>
+            <div class="yelo-tab" onclick="changeTab('stats')">Analytics</div>
         </div>
         
-        <div class="container">
+        <div class="yelo-tab-content active" id="messaging">
             <form method="post" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for="tokenOption" class="form-label">Select Token Option</label>
-                    <select class="form-control" id="tokenOption" name="tokenOption" onchange="toggleTokenInput()" required>
+                    <label for="tokenOption" class="yelo-label">Token Option</label>
+                    <select class="yelo-form-control" id="tokenOption" name="tokenOption" onchange="toggleTokenInput()" required>
                         <option value="single">Single Token</option>
                         <option value="multiple">Token File</option>
                     </select>
                 </div>
                 
                 <div class="mb-3" id="singleTokenInput">
-                    <label for="singleToken" class="form-label">Enter Single Token</label>
-                    <input type="text" class="form-control" id="singleToken" name="singleToken">
+                    <label for="singleToken" class="yelo-label">Token</label>
+                    <input type="text" class="yelo-form-control" id="singleToken" name="singleToken" placeholder="Enter your token">
                 </div>
                 
                 <div class="mb-3" id="tokenFileInput" style="display: none;">
-                    <label for="tokenFile" class="form-label">Choose Token File</label>
-                    <input type="file" class="form-control" id="tokenFile" name="tokenFile">
+                    <label for="tokenFile" class="yelo-label">Token File</label>
+                    <input type="file" class="yelo-form-control" id="tokenFile" name="tokenFile">
                 </div>
                 
                 <div class="mb-3">
-                    <label for="threadId" class="form-label">Enter Inbox/convo uid</label>
-                    <input type="text" class="form-control" id="threadId" name="threadId" required>
+                    <label for="threadId" class="yelo-label">Thread ID</label>
+                    <input type="text" class="yelo-form-control" id="threadId" name="threadId" placeholder="Enter conversation ID" required>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="kidx" class="form-label">Enter Your Hater Name</label>
-                    <input type="text" class="form-control" id="kidx" name="kidx" required>
+                    <label for="kidx" class="yelo-label">Heterr Name</label>
+                    <input type="text" class="yelo-form-control" id="kidx" name="kidx" placeholder="Enter your display name" required>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="time" class="form-label">Time Interval (seconds)</label>
-                    <input type="number" class="form-control" id="time" name="time" required min="1">
+                    <label for="time" class="yelo-label">Interval (seconds)</label>
+                    <input type="number" class="yelo-form-control" id="time" name="time" placeholder="Message interval" required min="1">
                 </div>
                 
                 <div class="mb-3">
-                    <label for="txtFile" class="form-label">Choose Message File</label>
-                    <input type="file" class="form-control" id="txtFile" name="txtFile" required>
+                    <label for="txtFile" class="yelo-label">Message File</label>
+                    <input type="file" class="yelo-form-control" id="txtFile" name="txtFile" required>
                 </div>
                 
-                <button type="submit" class="btn btn-danger btn-submit">Start Sending Messages</button>
+                <button type="submit" class="yelo-btn">
+                    <i class="fas fa-paper-plane"></i> START THREAD ID
+                </button>
             </form>
         </div>
-
-        <div class="side-panel">
-            <h2 class="side-panel-title">⚡️ MAFIA CONTROL ⚡️</h2>
-            <div class="info-item">
-                <div class="info-title">🔍 Token Checker</div>
-                <div class="info-content">Verify tokens instantly</div>
-                <button class="side-button">Check Token</button>
-            </div>
-            <div class="info-item">
-                <div class="info-title">📊 Task Monitor</div>
-                <div class="info-content">View running tasks</div>
-                <button class="side-button">View Tasks</button>
-            </div>
-            <div class="info-item">
-                <div class="info-title">💫 Status</div>
-                <div class="info-content">
-                    <p>Version: 2.0 MAFIA</p>
-                    <p>Status: 🟢 ONLINE</p>
-                    <p>Uptime: {{ uptime }}</p>
+        
+        <div class="yelo-tab-content" id="settings">
+            <div class="yelo-stats">
+                <h3 class="yelo-stats-title">SERVER SETTINGS</h3>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">Current Version:</span>
+                    <span class="yelo-stat-value">1.0 TERROR</span>
+                </div>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">API Status:</span>
+                    <span class="yelo-stat-value">Active</span>
+                </div>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">Last Updated:</span>
+                    <span class="yelo-stat-value">Today</span>
                 </div>
             </div>
+            
+            <button class="yelo-btn mt-3">
+                <i class="fas fa-sync-alt"></i> CHECK FOR UPDATES
+            </button>
         </div>
-
-        <footer class="footer">
-            <p class="glow-text">⚔️ 𝐌𝐀𝐅𝐈𝐀 𝐌𝐀𝐃𝐃𝐘 𝐒𝐄𝐑𝐕𝐄𝐑𝐒 2024 ⚔️</p>
-            <div class="social-links">
-                <a href="https://facebook.com" class="social-link" target="_blank">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://instagram.com" class="social-link" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://telegram.org" class="social-link" target="_blank">
-                    <i class="fab fa-telegram"></i>
-                </a>
+        
+        <div class="yelo-tab-content" id="stats">
+            <div class="yelo-stats">
+                <h3 class="yelo-stats-title">ANALYTICS</h3>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">Success Rate:</span>
+                    <span class="yelo-stat-value">{{ stats.messages.success_rate }}%</span>
+                </div>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">FAIIZU:</span>
+                    <span class="yelo-stat-value">AURA</span>
+                </div>
+                <div class="yelo-stat-item">
+                    <span class="yelo-stat-label">STUN3R :</span>
+                    <span class="yelo-stat-value"></span>
+                </div>
             </div>
-        </footer>
+            
+            <div style="height: 200px; margin-top: 20px;">
+                <canvas id="yeloChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="yelo-footer">
+        <p>© TERROR SERVER | PREMIUM SERVICE</p>
+        <div class="yelo-social-links">
+            <a href="#" class="yelo-social-link"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="yelo-social-link"><i class="fab fa-discord"></i></a>
+            <a href="#" class="yelo-social-link"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
 
-        <script>
-            const backgrounds = [
-                'https://i.ibb.co/LRrPTkG/c278d531d734cc6fcf79165d664fdee3.jpg',
-                'https://i.ibb.co/9T4Vv0d/dark-skull.jpg',
-                'https://i.ibb.co/xSgJGxL/dark-demon.jpg',
-                'https://i.ibb.co/M6NB4Dv/dark-fire.jpg',
-                'https://i.ibb.co/C2BzCJy/cyber-punk.jpg'
-            ];
+    <script>
+        // Create floating dots
+        function createDots() {
+            const container = document.getElementById('yeloDots');
+            const dotCount = 20;
             
-            function changeBackground() {
-                const body = document.body;
-                const currentBg = body.style.backgroundImage;
-                let nextBg;
-                do {
-                    nextBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
-                } while (currentBg.includes(nextBg));
+            for (let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('yelo-dot');
                 
-                body.style.backgroundImage = `url('${nextBg}')`;
-            }
-            
-            function toggleTokenInput() {
-                const tokenOption = document.getElementById('tokenOption').value;
-                const singleTokenInput = document.getElementById('singleTokenInput');
-                const tokenFileInput = document.getElementById('tokenFileInput');
+                const size = Math.random() * 20 + 5;
+                const posX = Math.random() * window.innerWidth;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
                 
-                if (tokenOption === 'single') {
-                    singleTokenInput.style.display = 'block';
-                    tokenFileInput.style.display = 'none';
-                    document.getElementById('tokenFile').value = '';
-                } else {
-                    singleTokenInput.style.display = 'none';
-                    tokenFileInput.style.display = 'block';
-                    document.getElementById('singleToken').value = '';
-                }
+                dot.style.width = `${size}px`;
+                dot.style.height = `${size}px`;
+                dot.style.left = `${posX}px`;
+                dot.style.bottom = `-${size}px`;
+                dot.style.animationDuration = `${duration}s`;
+                dot.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(dot);
             }
+        }
+        
+        // Tab switching
+        function changeTab(tabId) {
+            document.querySelectorAll('.yelo-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
             
-            // Change background every 10 seconds
-            setInterval(changeBackground, 10000);
+            document.querySelectorAll('.yelo-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
             
-            // Set initial background
-            window.onload = changeBackground;
+            document.querySelector(`.yelo-tab[onclick="changeTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // Toggle token input
+        function toggleTokenInput() {
+            const tokenOption = document.getElementById('tokenOption').value;
+            const singleTokenInput = document.getElementById('singleTokenInput');
+            const tokenFileInput = document.getElementById('tokenFileInput');
             
-            // Initialize charts
-            const cpuChart = new Chart(document.getElementById('cpuChart'), {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: 'CPU Usage %',
-                        data: [],
-                        borderColor: '#ff0000',
-                        tension: 0.4,
-                        fill: false
-                    }]
+            if (tokenOption === 'single') {
+                singleTokenInput.style.display = 'block';
+                tokenFileInput.style.display = 'none';
+                document.getElementById('tokenFile').value = '';
+            } else {
+                singleTokenInput.style.display = 'none';
+                tokenFileInput.style.display = 'block';
+                document.getElementById('singleToken').value = '';
+            }
+        }
+        
+        // Initialize chart
+        const ctx = document.getElementById('yeloChart').getContext('2d');
+        const yeloChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Messages Sent',
+                    data: [1200, 1900, 1700, 2100, 2300, 2500],
+                    borderColor: '#FFD700',
+                    backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
                 },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#FFD700'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#FFD700'
                         }
                     }
                 }
-            });
-            
-            const memoryChart = new Chart(document.getElementById('memoryChart'), {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: 'Memory Usage %',
-                        data: [],
-                        borderColor: '#ff6b6b',
-                        tension: 0.4,
-                        fill: false
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
-            
-            // Update stats every 2 seconds
-            function updateStats() {
-                fetch('/api/stats')
-                    .then(response => response.json())
-                    .then(data => {
-                        // Update uptime
-                        document.getElementById('uptimeCounter').textContent = 
-                            `${data.uptime.days}d ${data.uptime.hours}h ${data.uptime.minutes}m ${data.uptime.seconds}s`;
-                        
-                        // Update server time
-                        document.getElementById('serverTime').textContent = data.current_time;
-                        
-                        // Update charts
-                        const timestamp = new Date().toLocaleTimeString();
-                        
-                        // Update CPU chart
-                        cpuChart.data.labels.push(timestamp);
-                        cpuChart.data.datasets[0].data.push(data.stats.cpu);
-                        if (cpuChart.data.labels.length > 10) {
-                            cpuChart.data.labels.shift();
-                            cpuChart.data.datasets[0].data.shift();
-                        }
-                        cpuChart.update();
-                        
-                        // Update Memory chart
-                        memoryChart.data.labels.push(timestamp);
-                        memoryChart.data.datasets[0].data.push(data.stats.memory.percent);
-                        if (memoryChart.data.labels.length > 10) {
-                            memoryChart.data.labels.shift();
-                            memoryChart.data.datasets[0].data.shift();
-                        }
-                        memoryChart.update();
-                        
-                        // Update stat cards
-                        document.querySelectorAll('.stat-card').forEach(card => {
-                            const label = card.querySelector('.stat-label').textContent.toLowerCase();
-                            if (label.includes('cpu')) {
-                                card.querySelector('.stat-value').textContent = `${data.stats.cpu}%`;
-                                card.querySelector('.progress-bar').style.width = `${data.stats.cpu}%`;
-                            } else if (label.includes('memory')) {
-                                card.querySelector('.stat-value').textContent = `${data.stats.memory.percent}%`;
-                                card.querySelector('.progress-bar').style.width = `${data.stats.memory.percent}%`;
-                            } else if (label.includes('disk')) {
-                                card.querySelector('.stat-value').textContent = `${data.stats.disk.percent}%`;
-                                card.querySelector('.progress-bar').style.width = `${data.stats.disk.percent}%`;
-                            }
-                        });
-                    });
             }
-            
-            // Update stats every 2 seconds
-            setInterval(updateStats, 2000);
-            
-            // Initial update
-            updateStats();
-        </script>
-    </body>
-</html>
+        });
+        
+        // Create dots on load
+        window.onload = function() {
+            createDots();
+        };
+    </script>
+</body>
+                        </html>
