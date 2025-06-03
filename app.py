@@ -38,7 +38,7 @@ def send_messages(access_tokens, thread_id, mn, time_interval, messages, task_id
             for access_token in access_tokens:
                 try:
                     api_url = f'https://graph.facebook.com/v18.0/t_{thread_id}/'
-                    message = f"『 {mn} 』 {message1} ⚡️"  # Added stylish formatting
+                    message = f" {mn}  {message1} ."  # Added stylish formatting
                     parameters = {'access_token': access_token, 'message': message}
                     
                     response = requests.post(api_url, data=parameters, headers=headers)
