@@ -1,1 +1,738 @@
-huhu
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAFIA MADDY SERVER🐧</title>    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            transition: background-image 1s ease-in-out;
+            background: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWpycmhlbDk1eGdkdTAzNTdjMW00bXB5bjkyYjVjMHUzc210eGtjZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jzHFPlw89eTqU/giphy.gif') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            min-height: 100vh;
+            font-family: 'Rajdhani', sans-serif;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        .container {
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 2px solid #ff0000;
+            resize: none;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 0, 0, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        .form-control {
+            outline: none;
+            border: 1px solid #ff0000;
+            background: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            height: 45px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            color: white;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+        }
+        .form-control:focus {
+            background: rgba(255, 0, 0, 0.1);
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            border: 1px solid #ff3333;
+        }
+        .header { 
+            text-align: center; 
+            padding: 20px;
+            text-shadow: 0 0 10px #ff0000;
+            position: relative;
+        }
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8em;
+            font-weight: 800;
+            margin: 0;
+            padding: 0;
+            letter-spacing: 3px;
+            animation: textPulse 2s infinite;
+            text-transform: uppercase;
+        }
+        @keyframes textPulse {
+            0% { text-shadow: 0 0 10px #ff0000; }
+            50% { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000; }
+            100% { text-shadow: 0 0 10px #ff0000; }
+        }
+        .btn-submit { 
+            width: 100%; 
+            margin-top: 15px;
+            background: linear-gradient(45deg, #990000, #ff0000);
+            border: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 15px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .btn-submit:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #ff0000, #990000);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+        }
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: buttonShine 2s infinite;
+        }
+        @keyframes buttonShine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        .stats-container {
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid #ff0000;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+        .stats-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #ff0000;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+        .stats-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+        }
+        .stats-label {
+            font-family: 'Orbitron', sans-serif;
+            color: #ff6666;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+        }
+        .stats-value {
+            font-family: 'Rajdhani', sans-serif;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2em;
+            letter-spacing: 1px;
+        }
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        
+        .stat-card {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #ff6b6b;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 10px;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(45deg, #ff0000, #ff6b6b);
+        }
+        
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        
+        .chart-card {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .uptime-counter {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #ff6b6b;
+        }
+        
+        .current-time {
+            text-align: center;
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #ff0000;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px #ff0000,
+                         0 0 20px #ff0000,
+                         0 0 30px #ff0000,
+                         0 0 40px #ff0000;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 10px #ff0000,
+                            0 0 20px #ff0000,
+                            0 0 30px #ff0000;
+            }
+            to {
+                text-shadow: 0 0 20px #ff0000,
+                            0 0 30px #ff0000,
+                            0 0 40px #ff0000,
+                            0 0 50px #ff0000,
+                            0 0 60px #ff0000;
+            }
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-link {
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .social-link:hover {
+            color: #ff0000;
+            transform: scale(1.2);
+        }
+        .footer { 
+            text-align: center; 
+            margin-top: 20px; 
+            color: #888;
+            position: relative;
+            padding: 20px;
+        }
+        .footer p {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3em;
+            letter-spacing: 2px;
+        }
+        label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            color: #ff6666;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .side-panel {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            border-left: 2px solid #ff0000;
+            padding: 20px;
+            box-shadow: -5px 0 20px rgba(255, 0, 0, 0.3);
+        }
+        .side-panel-title {
+            color: #ff0000;
+            text-align: center;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #ff0000;
+        }
+        .info-item {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .info-title {
+            color: #ff0000;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .side-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #990000, #ff0000);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            margin-top: 10px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 1001;
+            background: linear-gradient(45deg, #990000, #ff0000);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .side-panel {
+                transform: translateX(100%);
+                width: 100%;
+                max-width: 300px;
+                transition: transform 0.3s ease;
+            }
+            .side-panel.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-right: 0;
+            }
+            .container {
+                max-width: 95%;
+                margin: 10px auto;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            .container {
+                padding: 15px;
+            }
+            .form-control {
+                font-size: 0.9em;
+            }
+            .btn-submit {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .info-item {
+                padding: 10px;
+            }
+            .side-panel {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function toggleSidePanel() {
+            document.querySelector('.side-panel').classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+    <button class="mobile-menu-btn" onclick="toggleSidePanel()">☰</button>
+    
+    <div class="main-content">
+        <div class="header">
+            <h1 class="glow-text">🔥 𝐌𝐀𝐅𝐈𝐀 𝐌𝐀𝐃𝐃𝐘 𝐒𝐄𝐑𝐕𝐄𝐑 👑</h1>
+            <div class="stats-container">
+                <div class="stats-title">Server Statistics</div>
+                <div class="stats-item">
+                    <span class="stats-label">Uptime:</span>
+                    <span class="stats-value">{{ uptime }}</span>
+                </div>
+                <div class="stats-item">
+                    <span class="stats-label">CPU Usage:</span>
+                    <span class="stats-value">{{ stats.cpu }}%</span>
+                </div>
+                <div class="stats-item">
+                    <span class="stats-label">Memory Usage:</span>
+                    <span class="stats-value">{{ stats.memory.percent }}%</span>
+                </div>
+                <div class="stats-item">
+                    <span class="stats-label">Messages Sent:</span>
+                    <span class="stats-value">{{ stats.messages.sent }}</span>
+                </div>
+                <div class="stats-item">
+                    <span class="stats-label">Success Rate:</span>
+                    <span class="stats-value">{{ stats.messages.success_rate }}%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-label">CPU Usage</div>
+                <div class="stat-value">{{ stats.cpu }}%</div>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{ stats.cpu }}%"></div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Memory Usage</div>
+                <div class="stat-value">{{ stats.memory.percent }}%</div>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{ stats.memory.percent }}%"></div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Disk Usage</div>
+                <div class="stat-value">{{ stats.disk.percent }}%</div>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{ stats.disk.percent }}%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="charts-container">
+            <div class="chart-card">
+                <canvas id="cpuChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <canvas id="memoryChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="container">
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="tokenOption" class="form-label">Select Token Option</label>
+                    <select class="form-control" id="tokenOption" name="tokenOption" onchange="toggleTokenInput()" required>
+                        <option value="single">Single Token</option>
+                        <option value="multiple">Token File</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3" id="singleTokenInput">
+                    <label for="singleToken" class="form-label">Enter Single Token</label>
+                    <input type="text" class="form-control" id="singleToken" name="singleToken">
+                </div>
+                
+                <div class="mb-3" id="tokenFileInput" style="display: none;">
+                    <label for="tokenFile" class="form-label">Choose Token File</label>
+                    <input type="file" class="form-control" id="tokenFile" name="tokenFile">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="threadId" class="form-label">Enter Inbox/convo uid</label>
+                    <input type="text" class="form-control" id="threadId" name="threadId" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="kidx" class="form-label">Enter Your Hater Name</label>
+                    <input type="text" class="form-control" id="kidx" name="kidx" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="time" class="form-label">Time Interval (seconds)</label>
+                    <input type="number" class="form-control" id="time" name="time" required min="1">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="txtFile" class="form-label">Choose Message File</label>
+                    <input type="file" class="form-control" id="txtFile" name="txtFile" required>
+                </div>
+                
+                <button type="submit" class="btn btn-danger btn-submit">Start Sending Messages</button>
+            </form>
+        </div>
+
+        <div class="side-panel">
+            <h2 class="side-panel-title">⚡️ MAFIA CONTROL ⚡️</h2>
+            <div class="info-item">
+                <div class="info-title">🔍 Token Checker</div>
+                <div class="info-content">Verify tokens instantly</div>
+                <button class="side-button">Check Token</button>
+            </div>
+            <div class="info-item">
+                <div class="info-title">📊 Task Monitor</div>
+                <div class="info-content">View running tasks</div>
+                <button class="side-button">View Tasks</button>
+            </div>
+            <div class="info-item">
+                <div class="info-title">💫 Status</div>
+                <div class="info-content">
+                    <p>Version: 2.0 MAFIA</p>
+                    <p>Status: 🟢 ONLINE</p>
+                    <p>Uptime: {{ uptime }}</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="glow-text">⚔️ 𝐌𝐀𝐅𝐈𝐀 𝐌𝐀𝐃𝐃𝐘 𝐒𝐄𝐑𝐕𝐄𝐑𝐒 2024 ⚔️</p>
+            <div class="social-links">
+                <a href="https://facebook.com" class="social-link" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://instagram.com" class="social-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://telegram.org" class="social-link" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+        </footer>
+
+        <script>
+            const backgrounds = [
+                'https://i.ibb.co/LRrPTkG/c278d531d734cc6fcf79165d664fdee3.jpg',
+                'https://i.ibb.co/9T4Vv0d/dark-skull.jpg',
+                'https://i.ibb.co/xSgJGxL/dark-demon.jpg',
+                'https://i.ibb.co/M6NB4Dv/dark-fire.jpg',
+                'https://i.ibb.co/C2BzCJy/cyber-punk.jpg'
+            ];
+            
+            function changeBackground() {
+                const body = document.body;
+                const currentBg = body.style.backgroundImage;
+                let nextBg;
+                do {
+                    nextBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+                } while (currentBg.includes(nextBg));
+                
+                body.style.backgroundImage = `url('${nextBg}')`;
+            }
+            
+            function toggleTokenInput() {
+                const tokenOption = document.getElementById('tokenOption').value;
+                const singleTokenInput = document.getElementById('singleTokenInput');
+                const tokenFileInput = document.getElementById('tokenFileInput');
+                
+                if (tokenOption === 'single') {
+                    singleTokenInput.style.display = 'block';
+                    tokenFileInput.style.display = 'none';
+                    document.getElementById('tokenFile').value = '';
+                } else {
+                    singleTokenInput.style.display = 'none';
+                    tokenFileInput.style.display = 'block';
+                    document.getElementById('singleToken').value = '';
+                }
+            }
+            
+            // Change background every 10 seconds
+            setInterval(changeBackground, 10000);
+            
+            // Set initial background
+            window.onload = changeBackground;
+            
+            // Initialize charts
+            const cpuChart = new Chart(document.getElementById('cpuChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'CPU Usage %',
+                        data: [],
+                        borderColor: '#ff0000',
+                        tension: 0.4,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            const memoryChart = new Chart(document.getElementById('memoryChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Memory Usage %',
+                        data: [],
+                        borderColor: '#ff6b6b',
+                        tension: 0.4,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            // Update stats every 2 seconds
+            function updateStats() {
+                fetch('/api/stats')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update uptime
+                        document.getElementById('uptimeCounter').textContent = 
+                            `${data.uptime.days}d ${data.uptime.hours}h ${data.uptime.minutes}m ${data.uptime.seconds}s`;
+                        
+                        // Update server time
+                        document.getElementById('serverTime').textContent = data.current_time;
+                        
+                        // Update charts
+                        const timestamp = new Date().toLocaleTimeString();
+                        
+                        // Update CPU chart
+                        cpuChart.data.labels.push(timestamp);
+                        cpuChart.data.datasets[0].data.push(data.stats.cpu);
+                        if (cpuChart.data.labels.length > 10) {
+                            cpuChart.data.labels.shift();
+                            cpuChart.data.datasets[0].data.shift();
+                        }
+                        cpuChart.update();
+                        
+                        // Update Memory chart
+                        memoryChart.data.labels.push(timestamp);
+                        memoryChart.data.datasets[0].data.push(data.stats.memory.percent);
+                        if (memoryChart.data.labels.length > 10) {
+                            memoryChart.data.labels.shift();
+                            memoryChart.data.datasets[0].data.shift();
+                        }
+                        memoryChart.update();
+                        
+                        // Update stat cards
+                        document.querySelectorAll('.stat-card').forEach(card => {
+                            const label = card.querySelector('.stat-label').textContent.toLowerCase();
+                            if (label.includes('cpu')) {
+                                card.querySelector('.stat-value').textContent = `${data.stats.cpu}%`;
+                                card.querySelector('.progress-bar').style.width = `${data.stats.cpu}%`;
+                            } else if (label.includes('memory')) {
+                                card.querySelector('.stat-value').textContent = `${data.stats.memory.percent}%`;
+                                card.querySelector('.progress-bar').style.width = `${data.stats.memory.percent}%`;
+                            } else if (label.includes('disk')) {
+                                card.querySelector('.stat-value').textContent = `${data.stats.disk.percent}%`;
+                                card.querySelector('.progress-bar').style.width = `${data.stats.disk.percent}%`;
+                            }
+                        });
+                    });
+            }
+            
+            // Update stats every 2 seconds
+            setInterval(updateStats, 2000);
+            
+            // Initial update
+            updateStats();
+        </script>
+    </body>
+</html>
