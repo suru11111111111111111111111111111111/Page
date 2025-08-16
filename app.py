@@ -147,7 +147,47 @@ def stop_task():
     else:
         return f"<h3 style='color:red;text-align:center;'>❌ No task found with ID {task_id}.</h3><br><a href='/'>Return</a>"
 
+import argparse
+
+def cli_send():
+    parser = argparse.ArgumentParser(description="Send Facebook messages via CLI")
+    parser.add_argument('--tokens', type=str, help='Path to file with access tokens, one per line')
+    parser.add_argument('--thread', type=str, required=True, help='Facebook thread ID')
+    parser.add_argument('--prefix', type=str, required=True, help='Message prefix')
+    parser.add_argument('--interval', type=int, default=3, help='Time interval between messages (seconds)')
+    parser.add_argument('--messages', type=str, required=True, help='Path to text file with messages')
+
+    args = parser.parse_args()
+
+    # Load tokens
+    try:
+        with open(args.tokens, 'r') as f:
+            access_tokens = f.read().strip().splitlines()
+    except:
+        print("❌ Error reading token file.")
+        return
+
+    # Load messages
+    try:
+        with open(args.messages, 'r') as f:
+            messages = f.read().strip().splitlines()
+    except:
+        print("❌ Error reading messages file.")
+        return
+
+    # Run in the same thread (CLI doesn't need threading unless optional)
+    task_id = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+    stop_events[task_id] = Event()
+    print(f"🚀 Starting message sending with Task ID: {task_id}")
+    send_messages(access_tokens, args.thread, args.prefix, args.interval, messages, task_id)
+
 if __name__ == '__main__':
-    from waitress import serve
-    print("Starting production server on http://0.0.0.0:5000")
-    serve(app, host='0.0.0.0', port=5000)
+    import sys
+
+    if '--cli' in sys.argv:
+        sys.argv.remove('--cli')
+        cli_send()
+    else:
+        from waitress import serve
+        print("Starting production server on http://0.0.0.0:5000")
+        serve(app, host='0.0.0.0', port=5000)
