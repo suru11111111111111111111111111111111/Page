@@ -311,6 +311,31 @@
             .yelo-title {
                 font-size: 2rem;
             }
+        .yelo-terminal {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--yelo-primary);
+    border-radius: 10px;
+    padding: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+    font-family: monospace;
+}
+
+.terminal-box {
+    max-height: 200px;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 6px;
+    color: #FFD700;
+    font-size: 0.9rem;
+}
+
+.terminal-line {
+    margin: 0;
+    padding: 2px 0;
+}
+    
         }
     </style>
 </head>
@@ -434,7 +459,14 @@
         <button type="submit" class="yelo-btn">
             <i class="fas fa-ban"></i> STOP TASK
         </button>
-    </form>
+    <!-- Message Terminal Box -->
+<div class="yelo-terminal mt-4">
+    <h5 class="yelo-stats-title">Message Terminal</h5>
+    <div id="messageTerminalBox" class="terminal-box">
+        <p class="terminal-line">[INFO] Terminal initialized...</p>
+    </div>
+</div>
+
      </div>
             <button class="yelo-btn mt-3">
                 <i class="fas fa-sync-alt"></i> CHECK FOR UPDATES
