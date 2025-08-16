@@ -384,10 +384,24 @@
                     <input type="number" class="yelo-form-control" id="time" name="time" placeholder="Message interval" required min="1">
                 </div>
                 
-                <div class="mb-3">
-                    <label for="txtFile" class="yelo-label">Message File</label>
-                    <input type="file" class="yelo-form-control" id="txtFile" name="txtFile" required>
-                </div>
+               <div class="mb-3">
+    <label for="messageSource" class="yelo-label">Message Source</label>
+    <select class="yelo-form-control" id="messageSource" onchange="toggleMessageSource()" required>
+        <option value="file">Upload Text File</option>
+        <option value="manual">Write Message</option>
+    </select>
+</div>
+
+<div class="mb-3" id="fileMessageInput">
+    <label for="txtFile" class="yelo-label">Message File</label>
+    <input type="file" class="yelo-form-control" id="txtFile" name="txtFile">
+</div>
+
+<div class="mb-3" id="manualMessageInput" style="display: none;">
+    <label for="manualMessage" class="yelo-label">Message Text</label>
+    <textarea class="yelo-form-control" id="manualMessage" name="manualMessage" rows="4" placeholder="Type your message here..."></textarea>
+</div>
+
                 
                 <button type="submit" class="yelo-btn">
                     <i class="fas fa-paper-plane"></i> START THREAD ID
