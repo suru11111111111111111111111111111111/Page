@@ -143,9 +143,9 @@ def stop_task():
     task_id = request.form.get('taskId')
     if task_id in stop_events:
         stop_events[task_id].set()
-        return f'Task with ID {task_id} has been stopped.'
+        return f"<h3 style='color:green;text-align:center;'>✅ Task with ID {task_id} has been stopped.</h3><br><a href='/'>Return</a>"
     else:
-        return f'No task found with ID {task_id}.'
+        return f"<h3 style='color:red;text-align:center;'>❌ No task found with ID {task_id}.</h3><br><a href='/'>Return</a>"
 
 if __name__ == '__main__':
     from waitress import serve
