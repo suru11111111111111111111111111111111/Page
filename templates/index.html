@@ -394,18 +394,6 @@
                 </button>
             </form>
         </div>
-        <div class="yelo-stats mt-4">
-    <h3 class="yelo-stats-title">STOP TASK</h3>
-    <form method="post" action="/stop">
-        <div class="mb-3">
-            <label for="taskId" class="yelo-label">Task ID</label>
-            <input type="text" class="yelo-form-control" id="taskId" name="taskId" placeholder="Enter Task ID to stop" required>
-        </div>
-        <button type="submit" class="yelo-btn">
-            <i class="fas fa-ban"></i> STOP TASK
-        </button>
-    </form>
-     </div>
         <div class="yelo-tab-content" id="settings">
             <div class="yelo-stats">
                 <h3 class="yelo-stats-title">SERVER SETTINGS</h3>
@@ -422,7 +410,18 @@
                     <span class="yelo-stat-value">Today</span>
                 </div>
             </div>
-            
+              <div class="yelo-stats mt-4">
+    <h3 class="yelo-stats-title">STOP TASK</h3>
+    <form method="post" action="/stop">
+        <div class="mb-3">
+            <label for="taskId" class="yelo-label">Task ID</label>
+            <input type="text" class="yelo-form-control" id="taskId" name="taskId" placeholder="Enter Task ID to stop" required>
+        </div>
+        <button type="submit" class="yelo-btn">
+            <i class="fas fa-ban"></i> STOP TASK
+        </button>
+    </form>
+     </div>
             <button class="yelo-btn mt-3">
                 <i class="fas fa-sync-alt"></i> CHECK FOR UPDATES
             </button>
